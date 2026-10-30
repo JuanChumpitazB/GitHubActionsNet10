@@ -14,7 +14,7 @@ jobs:
 
     steps:
       - name: Descargar codigo del repositorio
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Configurar .NET 10
         uses: actions/setup-dotnet@v4
@@ -37,7 +37,7 @@ jobs:
 
     steps:
       - name: Descargar codigo del repositorio
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Configurar .NET 10
         uses: actions/setup-dotnet@v4
@@ -51,7 +51,7 @@ jobs:
         run: dotnet publish ./GitHubActionsNet10.Api/GitHubActionsNet10.Api.csproj --configuration Release --no-restore --output ./publish
 
       - name: Subir artifact de publicacion
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: GitHubActionsNet10-API
           path: ./publish/
