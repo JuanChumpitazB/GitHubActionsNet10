@@ -47,11 +47,12 @@ jobs:
 
           echo "Secret de prueba configurado correctamente. Valor oculto."
           
-      - name: Simular fallo controlado
-        run: |
-          echo "Iniciando prueba de troubleshooting..."
-          echo "Simulando un error intencional."
-          exit 1
+         
+      #- name: Simular fallo controlado
+      #  run: |
+      #    echo "Iniciando prueba de troubleshooting..."
+      #    echo "Simulando un error intencional."
+      #    exit 1
 
   publish:
     name: Publish API
