@@ -11,7 +11,10 @@ jobs:
   build-and-test:
     name: Build and Test
     runs-on: ubuntu-latest
-
+    
+    env:
+        APP_ENVIRONMENT: ${{ vars.APP_ENVIRONMENT }}
+      
     steps:
       - name: Descargar codigo del repositorio
         uses: actions/checkout@v7
@@ -29,6 +32,20 @@ jobs:
 
       - name: Ejecutar pruebas
         run: dotnet test --configuration Release --no-build
+        
+      - name: Verificar variable y secret
+        shell: bash
+        env:
+          DEMO_API_TOKEN: ${{ secrets.DEMO_API_TOKEN }}
+        run: |
+          echo "Entorno configurado: $APP_ENVIRONMENT"
+
+          if [ -z "$DEMO_API_TOKEN" ]; then
+            echo "::error::El secret DEMO_API_TOKEN no esta configurado."
+            exit 1
+          fi
+
+          echo "Secret de prueba configurado correctamente. Valor oculto."
 
   publish:
     name: Publish API
